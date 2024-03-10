@@ -1,8 +1,9 @@
 import Modal from 'react-modal';
+import { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
+import { ToastContainer, toast } from 'react-toastify';
 
 import './styles.css';
-import { useState } from 'react';
 
 interface ModalTaskProps {
     modalIsOpen: boolean;
@@ -11,14 +12,28 @@ interface ModalTaskProps {
     idTask?: number;
     defaultTitle?: string;
     defaultDescription?: string;
+    onSuccess?: () => void;
 }
 
-export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '', defaultTitle = '', setModalIsOpen}: ModalTaskProps) {
+export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '', defaultTitle = '', setModalIsOpen, onSuccess}: ModalTaskProps) {
     const [title, setTitle] = useState(defaultTitle);
     const [description, setDescription] = useState(defaultDescription);
 
+    useEffect(() => {
+        setTitle(defaultTitle);
+        setDescription(defaultDescription);
+    }, [defaultTitle, defaultDescription]);
+
     const handleSubmit = function () {
+        if (!title || !description) {
+            toast.warning('Verifique os campos');
+            return;
+        }
+        setModalIsOpen(false);
+        console.log(onSuccess);
+        onSuccess && onSuccess();
         console.log('Salvando tarefa:', idTask, title, description);
+        return;
     }
 
     return (
@@ -51,6 +66,14 @@ export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '',
             <textarea placeholder='Descrição' className='input description' value={description} onChange={event => setDescription(event.target.value)}/>
             <button className='save-button' onClick={handleSubmit}>Salvar</button>
             <button className='close-button' onClick={() => setModalIsOpen(false)}><IoClose size={20} color="FF0000" /></button>
+            <ToastContainer
+                position='bottom-right'
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                theme='dark'
+            />
         </Modal>
     )
 }

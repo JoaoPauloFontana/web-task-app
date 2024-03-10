@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { FaPlus } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
@@ -15,6 +15,7 @@ export function Home() {
     const [tasks, setTasks] = useState<Array<Tasks>>([]);
     const [selectedTask, setSelectedTask] = useState<Tasks | null>(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
     const navigate = useNavigate();
     const { user } = useUserData();
     const { t } = useTranslation();
@@ -76,7 +77,7 @@ export function Home() {
                     <div className="details-task">
                         <span>{selectedTask.description}</span>
                     </div>
-                    <button className="btn-edit-task">
+                    <button className="btn-edit-task" onClick={() => setModalEditIsOpen(true)}>
                         <FaEdit size={20} color="#F97B3A" />
                     </button>
                     <button onClick={() => alert('Finalizando')} className="btn-finish-call">{t('home.detailService.btnEndCall')}</button>
@@ -90,10 +91,16 @@ export function Home() {
         setSelectedTask(task);
     }
 
+    const onSuccessfulSave = function () {
+        setModalIsOpen(false);
+        toast.success('Tarefa salva com sucesso!');
+    }
+
     return (
         <>
             <Navbar />
-            <ModalTask modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+            <ModalTask modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} onSuccess={onSuccessfulSave}/>
+            <ModalTask modalIsOpen={modalEditIsOpen} setModalIsOpen={setModalEditIsOpen} isEdit idTask={selectedTask?.id} defaultTitle={selectedTask?.title} defaultDescription={selectedTask?.description} onSuccess={onSuccessfulSave}/>
             <div className="background-home">
                 <div className="container-home">
                     <div className="card-tasks">
