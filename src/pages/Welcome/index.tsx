@@ -37,7 +37,7 @@ export function Welcome() {
     return (
         <div className="container-background-welcome">
             <div className="container-welcome">
-                <h1>Welcome</h1>
+                <h1 className='welcome-text'>Welcome</h1>
                 <div className='container-form'>
                     <h1 className='title-form'>{t('login.titleForm')}</h1>
                     <div className='container-inputs'>

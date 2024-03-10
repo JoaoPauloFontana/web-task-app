@@ -118,7 +118,7 @@
 }
 
 .username-info {
-    color: var(--blue-700);
+    color: #727272;
     font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;

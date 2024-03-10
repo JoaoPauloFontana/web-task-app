@@ -1,7 +1,7 @@
 .container-background-welcome {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(104deg, var(--gray-100) 50%, var(--blue-secondary) 50%);
+    background: linear-gradient(100deg, var(--gray-100) 50%, var(--blue-secondary) 50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
 .container-welcome {
     width: 70%;
     height: 70%;
-    background: linear-gradient(104deg, var(--gray-100) 50%, var(--blue-secondary) 50%);
+    background: linear-gradient(100deg, var(--gray-100) 50%, var(--blue-secondary) 50%);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     display: flex;
     justify-content: space-around;
@@ -54,6 +54,25 @@
 
 .submit-form:hover {
     filter: drop-shadow(0.2rem 0.3rem 0.4rem var(--gray-700) );
+}
+
+@media screen and (max-width: 1100px) {
+    .welcome-text {
+        display: none;
+    }
+
+    .container-background-welcome {
+        background: var(--blue-secondary);
+    }
+
+    .container-welcome {
+        background: var(--white);
+    }
+
+    .container-form {
+        background: var(--blue-secondary);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
 }
 
 @media screen and (max-width: 800px) {
