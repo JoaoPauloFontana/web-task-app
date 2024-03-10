@@ -1,15 +1,18 @@
-import { InputForm } from '../../components/InputForm';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
-import HashLoader from 'react-spinners/HashLoader';
 
 import './style.css';
-import { useState } from 'react';
+import useUserData from '../../context/User';
+import { InputForm } from '../../components/InputForm';
 
 export function Welcome() {
-    const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
+    const { setUserDataContext, user } = useUserData();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -22,8 +25,14 @@ export function Welcome() {
             toast.warning('Verifique se você digitou seu nome, por favor.');
             return;
         }
-        setIsLoading(true);
+        setUserDataContext({username});
     }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [user]);
 
     return (
         <div className="container-background-welcome">
@@ -35,8 +44,7 @@ export function Welcome() {
                         <InputForm type="text" placeholder={t('login.placeholderUserName')} onChange={handleUsername} />
                     </div>
                     <button onClick={handleLogin} className='submit-form'>
-                        {!isLoading ? t('login.btnConect') :
-                            <HashLoader loading={true} color='#fff' size={20} />}
+                        {t('login.btnConect')}
                     </button>
                 </div>
             </div>

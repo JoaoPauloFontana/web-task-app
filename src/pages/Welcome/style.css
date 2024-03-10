@@ -41,7 +41,7 @@
 }
 
 .submit-form {
-    background-color: var(--gray-700);
+    background-color: var(--blue-600);
     color: var(--white);
     font-weight: bold;
     padding: 0.5rem 0;
