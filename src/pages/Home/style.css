@@ -25,6 +25,7 @@
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    position: relative;
 }
 
 .card-tasks h2 {
@@ -98,6 +99,24 @@
     filter: drop-shadow(0px 0px 3px var(--red-500));
 }
 
+.btn-edit-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 400ms;
+    position: absolute;
+    right: 10px;
+}
+
+.btn-edit-task:hover {
+    background-color: var(--gray-100);
+}
+
 .username-info {
     color: var(--blue-700);
     font-weight: 600;
@@ -119,6 +138,24 @@
     width: 90%;
 }
 
+.btn-plus-task {
+    align-self: center;
+    background-color: var(--blue-primary);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    margin-top: 1rem;
+    align-self: flex-end;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.btn-plus-task:hover {
+    filter: drop-shadow(0px 0px 3px var(--blue-primary));
+}
 
 @media screen and (max-width: 950px) {
     .container-home {

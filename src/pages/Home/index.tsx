@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
+import { FaPlus } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 import './style.css';
 import useUserData from "../../context/User";
@@ -72,6 +74,9 @@ export function Home() {
                     <div className="details-task">
                         <span>{selectedTask.description}</span>
                     </div>
+                    <button className="btn-edit-task">
+                        <FaEdit size={20} color="#F97B3A" />
+                    </button>
                     <button onClick={() => alert('Finalizando')} className="btn-finish-call">{t('home.detailService.btnEndCall')}</button>
                 </>
             )
@@ -101,6 +106,9 @@ export function Home() {
                                 </li>
                             ))}
                         </ul>
+                        <button className="btn-plus-task">
+                            <FaPlus size={20} color="#FFF" />
+                        </button>
                     </div>
 
                     <div className="card-tasks">
