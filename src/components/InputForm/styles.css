@@ -1,5 +1,5 @@
 .input-form {
-    background-color: var(--gray-600);
+    background-color: transparent;
     border: var(--gray-100) 2px solid;
     border-radius: 3px;
     padding: 0.7rem;
