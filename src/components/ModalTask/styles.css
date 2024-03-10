@@ -1,0 +1,47 @@
+.input {
+    background-color: #F5F5F5;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 20rem;
+}
+.input::placeholder {
+    color: var(--gray-300);
+}	
+
+.title-form-task {
+    color: var(--gray-600);
+}
+
+.title {
+    margin-top: 2rem;
+}
+
+.description {
+    margin: 1rem;
+    height: 10rem;
+}
+
+.save-button {
+    background-color: var(--blue-primary);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0.3rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.save-button:hover {
+    filter: drop-shadow(0px 0px 3px var(--blue-primary));
+}
+
+.close-button {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: transparent;
+    cursor: pointer;
+}

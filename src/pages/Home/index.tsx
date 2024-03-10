@@ -9,10 +9,12 @@ import './style.css';
 import useUserData from "../../context/User";
 import { Navbar } from "../../components/Navbar";
 import { Tasks } from "../../types/tasks";
+import { ModalTask } from "../../components/ModalTask";
 
 export function Home() {
     const [tasks, setTasks] = useState<Array<Tasks>>([]);
     const [selectedTask, setSelectedTask] = useState<Tasks | null>(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const navigate = useNavigate();
     const { user } = useUserData();
     const { t } = useTranslation();
@@ -91,6 +93,7 @@ export function Home() {
     return (
         <>
             <Navbar />
+            <ModalTask modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
             <div className="background-home">
                 <div className="container-home">
                     <div className="card-tasks">
@@ -106,7 +109,7 @@ export function Home() {
                                 </li>
                             ))}
                         </ul>
-                        <button className="btn-plus-task">
+                        <button className="btn-plus-task" onClick={() => setModalIsOpen(true)}>
                             <FaPlus size={20} color="#FFF" />
                         </button>
                     </div>

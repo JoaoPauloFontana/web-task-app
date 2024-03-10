@@ -148,7 +148,6 @@
     align-items: center;
     border-radius: 200px;
     margin-top: 1rem;
-    align-self: flex-end;
     cursor: pointer;
     transition: 400ms;
 }
