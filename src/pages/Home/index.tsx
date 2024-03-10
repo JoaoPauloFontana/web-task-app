@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { FaTasks } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
 
@@ -25,7 +24,7 @@ export function Home() {
             {
                 id: 1,
                 title: 'Troca de lâmpada',
-                description: 'Trocar a lâmpada da sala de estar'
+                description: 'Trocar a lâmpada da sala de estar ou do quarto do casal, escrevendo mais um pouco para quebrar a linha e testar o scroll da página.'
             },
             {
                 id: 2,
@@ -95,7 +94,6 @@ export function Home() {
                             {tasks.map(task => (
                                 <li onClick={() => handleSelectTask(task)} className={`task-item ${selectedItem(task.id)}`} key={task.id}>
                                     {renderLineFocus(task.id)}
-                                    <FaTasks size={30} color="#F08E2A" />
                                     <div className="preview-info">
                                         <h3 className="username-info">{task.title}</h3>
                                         <p className="task-preview">{task.description}</p>

@@ -73,7 +73,7 @@
 .line-focus {
     width: 0.5rem;
     height: 100%;
-    background-color: var(--blue-500);
+    background-color: var(--blue-primary);
     position: absolute;
     border-radius: 8px 0 0 8px;
     left: 0;
@@ -100,10 +100,22 @@
 .username-info {
     color: var(--blue-700);
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+}
+
+.preview-info {
+    width: 100%;
 }
 
 .task-preview {
     color: var(--gray-300);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
 }
 
 
