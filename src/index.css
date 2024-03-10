@@ -1,0 +1,27 @@
+:root {
+    --white: #FFFFFF;
+
+    --gray-100: #F1F1F1;
+    
+    --orange-primary: #F97B3A;
+    --blue-primary: #3AA0F9;
+    --blue-secondary: #1A509A;
+    
+    
+    --red-500: #E53B3B;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+    box-shadow: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
