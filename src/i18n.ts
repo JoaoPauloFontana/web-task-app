@@ -12,9 +12,8 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         pt: {
             translation: {
                 login: {
-                    titleForm: "Entre em sua conta:",
+                    titleForm: "Digite seu nome:",
                     placeholderUserName: "Nome do usuário",
-                    placeholderMaxCalls: "Limite de chamadas simultâneas",
                     btnConect: "Conectar",
                 },
                 navbar: {
@@ -22,21 +21,22 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
                 },
                 home: {
                     listServices: {
-                        title: 'Atendimentos:',
+                        title: 'Tarefas:',
                     },
                     detailService: {
-                        title: 'Chamada selecionada: ',
-                        idCall: 'ID da chamada: ',
-                        midia: 'Mídia: ',
-                        startDate: 'Data inicial: ',
-                        service: 'Serviço: ',
-                        caller: 'Chamador: ',
+                        title: 'Tarefa selecionada: ',
                         btnEndCall: 'Finalizar',
-                        titleUnselected: 'Selecione uma chamada',
+                        titleUnselected: 'Selecione uma tarefa',
                     },
                     toast: {
-                        newCall: 'Nova chamada recebida de {{caller}}.',
-                        endCallError: 'Erro ao finalizar chamada: {{error}}',
+                        errorLoginName: 'Erro ao logar, verifique o nome do usuário',
+                        verifyFields: 'Verifique os campos',
+                        successSave: 'Tarefa salva com sucesso!',
+                    },
+                    buttons: {
+                        save: 'Salvar',
+                        cancel: 'Cancelar',
+                    
                     }
                 }
             }
@@ -44,9 +44,8 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         en: {
             translation: {
                 login: {
-                    titleForm: "Enter your account:",
+                    titleForm: "Enter your name:",
                     placeholderUserName: "User name",
-                    placeholderMaxCalls: "Maximum simultaneous calls",
                     btnConect: "Connect",
                 },
                 navbar: {
@@ -54,21 +53,21 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
                 },
                 home: {
                     listServices: {
-                        title: 'Calls:',
+                        title: 'Tasks:',
                     },
                     detailService: {
                         title: 'Selected call: ',
-                        idCall: 'Call ID: ',
-                        midia: 'Media: ',
-                        startDate: 'Start date: ',
-                        service: 'Service: ',
-                        caller: 'Caller: ',
                         btnEndCall: 'End call',
-                        titleUnselected: 'Select a call',
+                        titleUnselected: 'Select a task',
                     },
                     toast: {
-                        newCall: 'New call received from {{caller}}.',
-                        endCallError: 'Error ending call: {{error}}',
+                        errorLoginName: 'Error logging in, check the username',
+                        verifyFields: 'Check the fields',
+                        successSave: 'Task saved successfully!',
+                    },
+                    buttons: {
+                        save: 'Save',
+                        cancel: 'Cancel',
                     }
                 }
             }

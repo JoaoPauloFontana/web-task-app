@@ -22,7 +22,7 @@ export function Welcome() {
 
     const handleLogin = function () {
         if (username === '') {
-            toast.warning('Verifique se você digitou seu nome, por favor.');
+            toast.warning(t('home.toast.errorLoginName'));
             return;
         }
         setUserDataContext({username});

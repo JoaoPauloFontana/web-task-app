@@ -93,7 +93,7 @@ export function Home() {
 
     const onSuccessfulSave = function () {
         setModalIsOpen(false);
-        toast.success('Tarefa salva com sucesso!');
+        toast.success(t('home.toast.successSave'));
     }
 
     return (

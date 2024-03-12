@@ -2,6 +2,8 @@ import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from "react-i18next";
+import 'react-toastify/dist/ReactToastify.css';
 
 import './styles.css';
 
@@ -18,6 +20,7 @@ interface ModalTaskProps {
 export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '', defaultTitle = '', setModalIsOpen, onSuccess}: ModalTaskProps) {
     const [title, setTitle] = useState(defaultTitle);
     const [description, setDescription] = useState(defaultDescription);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setTitle(defaultTitle);
@@ -26,7 +29,7 @@ export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '',
 
     const handleSubmit = function () {
         if (!title || !description) {
-            toast.warning('Verifique os campos');
+            toast.warning(t('home.toast.verifyFields'));
             return;
         }
         setModalIsOpen(false);
@@ -64,7 +67,7 @@ export function ModalTask({modalIsOpen, isEdit, idTask, defaultDescription = '',
             <h2 className='title-form-task'>{ isEdit ? 'Editando tarefa:' : 'Criando nova tarefa:'}</h2>
             <input placeholder='Título' type="text" className='input title' value={title} onChange={event => setTitle(event.target.value)}/>
             <textarea placeholder='Descrição' className='input description' value={description} onChange={event => setDescription(event.target.value)}/>
-            <button className='save-button' onClick={handleSubmit}>Salvar</button>
+            <button className='save-button' onClick={handleSubmit}>{ t('home.buttons.save') }</button>
             <button className='close-button' onClick={() => setModalIsOpen(false)}><IoClose size={20} color="FF0000" /></button>
             <ToastContainer
                 position='bottom-right'
