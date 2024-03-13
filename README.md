@@ -1,7 +1,7 @@
 ## Instalação 
 ### Requisitos
  - Docker
- - Porta 3000 liberada.
+ - Porta 8012 liberada.
 
 Clone the project:
 ```
