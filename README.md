@@ -3,6 +3,11 @@
  - Docker
  - Porta 3000 liberada.
 
+Clone the project:
+```
+git clone https://github.com/JoaoPauloFontana/web-task-app.git
+```
+
 Execute um dos seguintes comandos na pasta raiz do projeto:
 
 bash
