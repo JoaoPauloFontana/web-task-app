@@ -26,7 +26,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
                     detailService: {
                         title: 'Tarefa selecionada: ',
                         btnEndCall: 'Finalizar',
-                        titleUnselected: 'Selecione uma tarefa',
+                        titleUnselected: 'Selecione uma tarefa:',
                     },
                     toast: {
                         errorLoginName: 'Erro ao logar, verifique o nome do usuário',

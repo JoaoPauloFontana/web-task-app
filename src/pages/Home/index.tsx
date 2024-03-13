@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import { FaPlus } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import { fetchTasks, deleteTask } from '../../services/taskService';
 
 import './style.css';
 import useUserData from "../../context/User";
@@ -20,40 +21,40 @@ export function Home() {
     const { user } = useUserData();
     const { t } = useTranslation();
 
+    const fetchData = async () => {
+        try {
+            const tasksFromApi = await fetchTasks();
+
+            const auxiliar = tasksFromApi.map((item: any) => ({
+                id: item.id,
+                title: item.name,
+                description: item.description
+            }));
+
+            if (selectedTask != null) {
+                const editedTask = auxiliar.find((item: any) => item.id == selectedTask.id);
+
+                if (editedTask) {
+                    setSelectedTask(editedTask);
+                }
+            }
+
+            setTasks(auxiliar);
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+            toast.error(t('home.toast.errorFetchingTasks'));
+        }
+    };
+    
+
     useEffect(() => {
         if (!user) {
             navigate('/login');
             return;
         }
-        const tasks: Array<Tasks> = [
-            {
-                id: 1,
-                title: 'Troca de lâmpada',
-                description: 'Trocar a lâmpada da sala de estar ou do quarto do casal, escrevendo mais um pouco para quebrar a linha e testar o scroll da página.'
-            },
-            {
-                id: 2,
-                title: 'Instalação de chuveiro',
-                description: 'Instalar um chuveiro elétrico'
-            },
-            {
-                id: 3,
-                title: 'Conserto de torneira',
-                description: 'Consertar a torneira do banheiro'
-            },
-            {
-                id: 4,
-                title: 'Conserto de vazamento',
-                description: 'Consertar um vazamento na pia da cozinha'
-            },
-            {
-                id: 5,
-                title: 'Instalação de ar condicionado',
-                description: 'Instalar um ar condicionado'
-            },
-        ];
-        setTasks(tasks);
-    }, []);
+
+        fetchData();
+    }, [navigate, t, user]);
 
     const renderLineFocus = function (taskId: number) {
         if (selectedTask && selectedTask.id === taskId) {
@@ -80,7 +81,7 @@ export function Home() {
                     <button className="btn-edit-task" onClick={() => setModalEditIsOpen(true)}>
                         <FaEdit size={20} color="#F97B3A" />
                     </button>
-                    <button onClick={() => alert('Finalizando')} className="btn-finish-call">{t('home.detailService.btnEndCall')}</button>
+                    <button onClick={() => handleDeleteTask(selectedTask.id)} className="btn-finish-call">{t('home.detailService.btnEndCall')}</button>
                 </>
             )
         }
@@ -90,17 +91,23 @@ export function Home() {
     const handleSelectTask = function (task: Tasks) {
         setSelectedTask(task);
     }
-
-    const onSuccessfulSave = function () {
-        setModalIsOpen(false);
-        toast.success(t('home.toast.successSave'));
+    
+    const handleDeleteTask = async function (taskId: any) {
+        try {
+            await deleteTask(taskId);
+            fetchData();
+            setSelectedTask(null);
+        } catch (error) {
+            console.error('Error deleting task:', error);
+            toast.error(t('home.toast.errorDeletingTask'));
+        }
     }
 
     return (
         <>
             <Navbar />
-            <ModalTask modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} onSuccess={onSuccessfulSave}/>
-            <ModalTask modalIsOpen={modalEditIsOpen} setModalIsOpen={setModalEditIsOpen} isEdit idTask={selectedTask?.id} defaultTitle={selectedTask?.title} defaultDescription={selectedTask?.description} onSuccess={onSuccessfulSave}/>
+            <ModalTask modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} onSuccess={fetchData}/>
+            <ModalTask modalIsOpen={modalEditIsOpen} setModalIsOpen={setModalEditIsOpen} isEdit idTask={selectedTask?.id} defaultTitle={selectedTask?.title} defaultDescription={selectedTask?.description} onSuccess={fetchData}/>
             <div className="background-home">
                 <div className="container-home">
                     <div className="card-tasks">
