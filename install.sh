@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "Building Docker container..."
-docker-compose build &&
+docker build -t web-app .
 
-echo "Starting Docker containers..."
-docker-compose up -d &&
+echo "Building Docker container..."
+docker run -p 8012:8080 -d web-app
 
 echo "Project initialization complete."
